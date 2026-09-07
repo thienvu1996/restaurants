@@ -19,34 +19,101 @@
   <main class="container-fluid py-3 px-3 px-lg-4">
     <section class="filter-panel mb-3">
       <div class="row g-2 align-items-end">
-        <div class="col-12 col-md-4 col-xl-3"><label class="form-label small mb-1">Tìm nhanh</label><input id="quickSearch" class="form-control form-control-sm" placeholder="Tên, mã, phòng ban, mặt hàng..."></div>
-        <div class="col-6 col-md-2"><label class="form-label small mb-1">Từ ngày</label><input id="fromDate" type="date" class="form-control form-control-sm"></div>
-        <div class="col-6 col-md-2"><label class="form-label small mb-1">Đến ngày</label><input id="toDate" type="date" class="form-control form-control-sm"></div>
-        <div class="col-6 col-md-2"><label class="form-label small mb-1">Chi nhánh</label><select id="branchFilter" class="form-select form-select-sm"><option value="">Tất cả</option><option value="HCM">HCM</option><option value="HN">Hà Nội</option><option value="DN">Đà Nẵng</option></select></div>
-        <div class="col-6 col-md-2 col-xl-3 d-grid d-md-flex gap-2"><button class="btn btn-primary btn-sm flex-fill" id="btnSearch">Tìm</button><button class="btn btn-outline-secondary btn-sm flex-fill" id="btnReset">Xóa lọc</button></div>
+        <div class="col-12 col-md-4 col-xl-3">
+          <label class="form-label small mb-1">Tìm nhanh</label>
+          <input id="quickSearch" class="form-control form-control-sm" placeholder="Tên, mã, phòng ban, mặt hàng...">
+        </div>
+        <div class="col-6 col-md-2">
+          <label class="form-label small mb-1">Từ ngày</label>
+          <input id="fromDate" type="date" class="form-control form-control-sm">
+        </div>
+        <div class="col-6 col-md-2">
+          <label class="form-label small mb-1">Đến ngày</label>
+          <input id="toDate" type="date" class="form-control form-control-sm">
+        </div>
+        <div class="col-6 col-md-2">
+          <label class="form-label small mb-1">Chi nhánh</label>
+          <select id="branchFilter" class="form-select form-select-sm">
+            <option value="">Tất cả</option>
+            <option value="HCM">HCM</option>
+            <option value="HN">Hà Nội</option>
+            <option value="DN">Đà Nẵng</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-2 col-xl-3 d-grid d-md-flex gap-2">
+          <button class="btn btn-primary btn-sm flex-fill" id="btnSearch">Tìm</button>
+          <button class="btn btn-outline-secondary btn-sm flex-fill" id="btnReset">Xóa lọc</button>
+        </div>
       </div>
     </section>
 
     <div id="homeView">
       <div class="row g-3">
         <div class="col-12 col-lg-7">
-          <div class="card border-0 shadow-sm h-100"><div class="card-body p-3 p-md-4">
-            <h1 class="h4 fw-bold mb-2">Một trang dùng chung cho nhiều loại QR</h1>
-            <p class="text-secondary mb-4">QR chỉ cần chứa link dạng <code>?type=employee&id=NV001</code> hoặc <code>?type=item&id=MH001</code>. Trang sẽ tự nhận loại dữ liệu và hiển thị đúng hồ sơ.</p>
-            <div class="row g-3">
-              <div class="col-12 col-md-6"><div class="demo-card h-100"><span class="badge text-bg-primary mb-2">Nhân sự</span><h2 class="h5">NV001 · Nguyễn Văn An</h2><p class="small text-secondary">Hồ sơ, chức vụ, chi nhánh, trạng thái và lịch sử chấm công theo khoảng ngày.</p><div class="d-flex gap-2 flex-wrap"><a class="btn btn-primary btn-sm" href="?type=employee&id=NV001">Mở hồ sơ</a><button class="btn btn-outline-primary btn-sm" data-demo-qr="employee">Hiện QR</button></div><div class="qr-slot mt-3" id="employeeQr"></div></div></div>
-              <div class="col-12 col-md-6"><div class="demo-card h-100"><span class="badge text-bg-success mb-2">Mã hàng</span><h2 class="h5">MH001 · Cà phê rang 500g</h2><p class="small text-secondary">Tồn kho, khả dụng, đang giữ, đơn xuất và lịch sử nhập/xuất theo khoảng ngày.</p><div class="d-flex gap-2 flex-wrap"><a class="btn btn-success btn-sm" href="?type=item&id=MH001">Mở mã hàng</a><button class="btn btn-outline-success btn-sm" data-demo-qr="item">Hiện QR</button></div><div class="qr-slot mt-3" id="itemQr"></div></div></div>
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3 p-md-4">
+              <h1 class="h4 fw-bold mb-2">Một trang dùng chung cho nhiều loại QR</h1>
+              <p class="text-secondary mb-4">Để quét nhanh, QR demo chỉ chứa mã ngắn <code>E:NV001</code> hoặc <code>I:MH001</code>. Scanner nhận mã rồi mở đúng hồ sơ ngay; URL dài vẫn được hỗ trợ.</p>
+
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <div class="demo-card h-100">
+                    <span class="badge text-bg-primary mb-2">Nhân sự</span>
+                    <h2 class="h5">NV001 · Nguyễn Văn An</h2>
+                    <p class="small text-secondary">Hồ sơ, chức vụ, chi nhánh, trạng thái và lịch sử chấm công theo khoảng ngày.</p>
+                    <div class="d-flex gap-2 flex-wrap">
+                      <a class="btn btn-primary btn-sm" href="?type=employee&id=NV001">Mở hồ sơ</a>
+                      <button class="btn btn-outline-primary btn-sm" data-demo-qr="employee">Hiện QR</button>
+                    </div>
+                    <div class="qr-slot mt-3" id="employeeQr"></div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <div class="demo-card h-100">
+                    <span class="badge text-bg-success mb-2">Mã hàng</span>
+                    <h2 class="h5">MH001 · Cà phê rang 500g</h2>
+                    <p class="small text-secondary">Tồn kho, khả dụng, đang giữ, đơn xuất và lịch sử nhập/xuất theo khoảng ngày.</p>
+                    <div class="d-flex gap-2 flex-wrap">
+                      <a class="btn btn-success btn-sm" href="?type=item&id=MH001">Mở mã hàng</a>
+                      <button class="btn btn-outline-success btn-sm" data-demo-qr="item">Hiện QR</button>
+                    </div>
+                    <div class="qr-slot mt-3" id="itemQr"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div></div>
+          </div>
         </div>
-        <div class="col-12 col-lg-5"><div class="card border-0 shadow-sm h-100"><div class="card-body p-3 p-md-4"><h2 class="h5 fw-bold">Search nhanh</h2><div id="searchResults" class="list-group list-group-flush"></div></div></div></div>
+
+        <div class="col-12 col-lg-5">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-3 p-md-4">
+              <h2 class="h5 fw-bold">Search nhanh</h2>
+              <div id="searchResults" class="list-group list-group-flush"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div id="detailView" class="d-none"></div>
   </main>
 
-  <div class="modal fade" id="scannerModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Quét QR</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"><div id="qrReader"></div><div class="small text-secondary mt-2">Đưa QR vào khung. Khi nhận được link hợp lệ, trang sẽ mở ngay.</div></div></div></div></div>
+  <div class="modal fade" id="scannerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Quét QR</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="qrReader"></div>
+          <div class="small text-secondary mt-2">Đưa QR vào khung. Ưu tiên FAST Native Scanner; máy không hỗ trợ sẽ tự fallback.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
