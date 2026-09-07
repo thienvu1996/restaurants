@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QR Scanner Reuse Example</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./qr-scanner.css">
+</head>
+<body>
+  <div class="container py-4">
+    <div id="qrA" class="mx-auto" style="max-width:600px"></div>
+  </div>
+
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <script src="./qr-scanner.js"></script>
+  <script>
+    const qrA = new QRScanner("#qrA", {
+      title: "Scanner dùng lại ở trang khác",
+      onScan(value) {
+        alert("Đã quét: " + value);
+      }
+    });
+  </script>
+</body>
+</html>
