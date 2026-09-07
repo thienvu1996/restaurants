@@ -1,0 +1,78 @@
+.qr-scanner-component {
+  --qr-accent: #0d6efd;
+  --qr-bg: #0b1220;
+  --qr-radius: 18px;
+}
+
+.qr-scanner-component .qr-card {
+  border: 0;
+  border-radius: var(--qr-radius);
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.14);
+}
+
+.qr-scanner-component .qr-camera-wrap {
+  position: relative;
+  background: var(--qr-bg);
+  min-height: 320px;
+  display: grid;
+  place-items: center;
+}
+
+.qr-scanner-component .qr-reader {
+  width: 100%;
+  min-height: 320px;
+}
+
+.qr-scanner-component .qr-reader video,
+.qr-scanner-component .qr-reader canvas {
+  width: 100% !important;
+  max-height: 70vh;
+  object-fit: cover;
+}
+
+.qr-scanner-component .qr-frame {
+  position: absolute;
+  width: min(68vw, 260px);
+  height: min(68vw, 260px);
+  max-width: 260px;
+  max-height: 260px;
+  pointer-events: none;
+  border: 2px solid rgba(255,255,255,.25);
+  border-radius: 20px;
+  box-shadow: 0 0 0 9999px rgba(0,0,0,.16);
+}
+
+.qr-scanner-component .qr-frame::before,
+.qr-scanner-component .qr-frame::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background:
+    linear-gradient(var(--qr-accent),var(--qr-accent)) left top/42px 4px no-repeat,
+    linear-gradient(var(--qr-accent),var(--qr-accent)) left top/4px 42px no-repeat,
+    linear-gradient(var(--qr-accent),var(--qr-accent)) right top/42px 4px no-repeat,
+    linear-gradient(var(--qr-accent),var(--qr-accent)) right top/4px 42px no-repeat,
+    linear-gradient(var(--qr-accent),var(--qr-accent)) left bottom/42px 4px no-repeat,
+    linear-gradient(var(--qr-accent),var(--qr-accent)) left bottom/4px 42px no-repeat,
+    linear-gradient(var(--qr-accent),var(--qr-accent)) right bottom/42px 4px no-repeat,
+    linear-gradient(var(--qr-accent),var(--qr-accent)) right bottom/4px 42px no-repeat;
+}
+
+.qr-scanner-component .qr-status {
+  min-height: 24px;
+}
+
+.qr-scanner-component .qr-result-text {
+  word-break: break-word;
+}
+
+.qr-scanner-component .qr-history {
+  max-height: 220px;
+  overflow: auto;
+}
+
+.qr-scanner-component .qr-history .list-group-item {
+  font-size: .92rem;
+}
